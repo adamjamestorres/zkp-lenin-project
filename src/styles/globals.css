@@ -1,0 +1,10 @@
+
+
+body {
+/* Created with https://www.css-gradient.com */
+background: rgba(255, 255, 255, 1.0);
+background: -webkit-radial-gradient(left, rgba(255, 255, 255, 1.0), rgba(230, 229, 229, 0.5));
+background: -moz-radial-gradient(left, rgba(255, 255, 255, 1.0), rgba(230, 229, 229, 0.5));
+background: radial-gradient(to right, rgba(255, 255, 255, 1.0), rgba(230, 229, 229, 1.0));
+}
+

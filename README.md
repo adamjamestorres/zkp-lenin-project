@@ -1,1 +1,1 @@
-# zkp-lenin-project
+# zkp-lenin

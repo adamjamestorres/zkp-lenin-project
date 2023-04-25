@@ -1,0 +1,14 @@
+.body {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  min-height: 100vh;
+  flex-direction: column;
+  background-color: transparent;
+  /* Created with https://www.css-gradient.com */
+/* Created with https://www.css-gradient.com */
+background: rgba(255, 255, 255, 1.0);
+background: -webkit-radial-gradient(left, rgba(255, 255, 255, 1.0), rgba(94, 93, 93,1.0));
+background: -moz-radial-gradient(left, rgba(255, 255, 255, 1.0), rgba(94, 93, 93,1.0));
+background: radial-gradient(to right, rgba(255, 255, 255, 1.0), rgba(94, 93, 93,1.0));
+}
