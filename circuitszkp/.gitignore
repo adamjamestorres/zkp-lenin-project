@@ -1,0 +1,5 @@
+circomlib/
+yarn-error.log
+
+/build
+/circom
