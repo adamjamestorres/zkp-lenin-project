@@ -3,13 +3,13 @@ pragma circom 2.0.3;
 include "./circomlib/circuits/poseidon.circom";
 include "./ReputationTree.circom";
 
-template RiskRatingProof(nLevels) {
+template RiskRatingProof(height) {
     // set by admin
 		signal input raterKey;
 		signal input publicAddr;
     // Construction of Proof
-		signal input pathIndices[nLevels];
-    signal input siblings[nLevels];
+		signal input pathIndices[height];
+    signal input siblings[height];
     // outputs
 		signal output root;
     signal output id;
@@ -20,10 +20,10 @@ template RiskRatingProof(nLevels) {
     hasher.inputs[1] <== raterKey;
     identityCommitment <== hasher.out;
     // Add user to this Reputation Tree and return the root and id
-    component inclusionProof = MerkleTreeInclusionProof(nLevels);
+    component inclusionProof = MerkleTreeInclusionProof(height);
     inclusionProof.leaf <== identityCommitment;
 
-    for (var i = 0; i < nLevels; i++) {
+    for (var i = 0; i < height; i++) {
         inclusionProof.siblings[i] <== siblings[i];
         inclusionProof.pathIndices[i] <== pathIndices[i];
     }

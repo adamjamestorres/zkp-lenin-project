@@ -3,21 +3,21 @@ pragma circom 2.0.3;
 include "./circomlib/circuits/poseidon.circom";
 include "./circomlib/circuits/mux1.circom";
 
-template MerkleTreeInclusionProof(nLevels) {
+template MerkleTreeInclusionProof(height) {
     signal input leaf;
-    signal input pathIndices[nLevels];
-    signal input siblings[nLevels];
+    signal input pathIndices[height];
+    signal input siblings[height];
 
     signal output root;
 		signal output leafHash;
 
-    component poseidons[nLevels];
-    component mux[nLevels];
+    component poseidons[height];
+    component mux[height];
 
-    signal hashes[nLevels + 1];
+    signal hashes[height + 1];
     hashes[0] <== leaf;
 
-    for (var i = 0; i < nLevels; i++) {
+    for (var i = 0; i < height; i++) {
         pathIndices[i] * (1 - pathIndices[i]) === 0;
 
         poseidons[i] = Poseidon(2);
@@ -37,7 +37,7 @@ template MerkleTreeInclusionProof(nLevels) {
         hashes[i + 1] <== poseidons[i].out;
     }
 
-    root <== hashes[nLevels];
+    root <== hashes[height];
 
 		component poseidonLeaf;
 		poseidonLeaf = Poseidon(1);
