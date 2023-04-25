@@ -1,0 +1,47 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.4;
+import '@openzeppelin/contracts/access/Ownable.sol';
+contract Lenin is Ownable {
+
+  /// @dev Emitted when a attestation root is changed.
+  /// @param key: name of the attestation, e.g. 
+  /// @param value: new root value.
+  event AttestationRootChanged(string key, string value);
+
+  /// @dev Emitted when a new identity commitment is added.
+  /// @param identityCommitment: New identity commitment.
+  event LoanAdded(uint256 identityCommitment);
+
+    // stores the 
+    mapping(string => string) public attestationRoots;
+
+	function getAttestationRoot(string calldata name) public view returns (string memory) {
+			return attestationRoots[name];
+	}
+
+	function setAttestationRoot(string calldata name, string calldata value)
+			public
+			onlyOwner
+	{
+			attestationRoots[name] = value;
+			emit AttestationRootChanged(name, value);
+	}
+
+	/// @dev Adds an identity commitment to an existing group.
+  /// @param identityCommitment: New identity commitment.
+  function addLoan(uint256 identityCommitment) external {
+    emit LoanAdded(identityCommitment);
+  }
+
+  function getRatingTreeRoot() public view returns (uint256) {
+    return identityTree.root;
+  }
+
+  function getRatingTreeDepth() public view returns (uint8) {
+    return identityTree.depth;
+  }
+
+  function getRatingTreeNumberOfLeaves() public view returns (uint256) {
+    return identityTree.numberOfLeaves;
+  }
+}
